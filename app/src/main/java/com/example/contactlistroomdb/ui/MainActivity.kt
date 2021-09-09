@@ -9,15 +9,25 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.contactlistroomdb.databinding.ActivityMainBinding
+import com.example.contactlistroomdb.db.ContactDatabase
 import com.example.contactlistroomdb.model.Contact
+import com.example.contactlistroomdb.repository.ContactRepository
 import com.example.contactlistroomdb.ui.adapter.ContactAdapter
 import com.example.contactlistroomdb.ui.viewmodel.ContactViewModel
+import com.example.contactlistroomdb.ui.viewmodel.ContactViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var contactAdapter: ContactAdapter
-    private var myArray = mutableListOf<Contact>()
-    val viewModel: ContactViewModel by viewModels()
+
+
+    val viewModel: ContactViewModel by viewModels {
+        ContactViewModelFactory(
+            this.application,
+            ContactRepository(ContactDatabase(this))
+        )
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +40,10 @@ class MainActivity : AppCompatActivity() {
             with(binding) {
                 var name = etName.text.toString()
                 var number = etNumber.text.toString()
-                val contact = Contact(name, number)
+                viewModel.addContact(Contact(name = name, phoneNumber = number))
 
-             viewModel.addData(contact)
+                etName.setText("")
+               etNumber.setText("Juan")
 
                 //myArray.add(contact)
                 //contactAdapter.differ.submitList(myArray)
@@ -46,9 +57,7 @@ class MainActivity : AppCompatActivity() {
 
                 viewModel.contactInfo.observe(this@MainActivity, Observer {
                     contactAdapter.differ.submitList(it)
-                    contactAdapter.notifyItemInserted(myArray.size - 1)
                     Toast.makeText(this@MainActivity, "Number added", Toast.LENGTH_SHORT).show()
-
 
                 })
             }
