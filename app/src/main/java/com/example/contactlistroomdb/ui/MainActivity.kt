@@ -7,7 +7,15 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.contactlistroomdb.R
 import com.example.contactlistroomdb.databinding.ActivityMainBinding
 import com.example.contactlistroomdb.db.ContactDatabase
 import com.example.contactlistroomdb.model.Contact
@@ -17,62 +25,27 @@ import com.example.contactlistroomdb.ui.viewmodel.ContactViewModel
 import com.example.contactlistroomdb.ui.viewmodel.ContactViewModelFactory
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var viewModel: ContactViewModel
     private lateinit var binding: ActivityMainBinding
-    private lateinit var contactAdapter: ContactAdapter
-
-
-    val viewModel: ContactViewModel by viewModels {
-        ContactViewModelFactory(
-            this.application,
-            ContactRepository(ContactDatabase(this))
-        )
-
-    }
+    private lateinit var navController: NavController
+lateinit var contactAdapter:ContactAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupRecyclerView()
 
-
-        binding.btnAddContact.setOnClickListener {
-            with(binding) {
-                var name = etName.text.toString()
-                var number = etNumber.text.toString()
-                viewModel.addContact(Contact(name = name, phoneNumber = number))
-
-                etName.setText("")
-               etNumber.setText("Juan")
-
-                //myArray.add(contact)
-                //contactAdapter.differ.submitList(myArray)
-                //contactAdapter.notifyItemInserted(myArray.size - 1)
-
-                //Toast.makeText(this@MainActivity, "Number added", Toast.LENGTH_SHORT).show()
-                //etName.text.clear()
-                //etNumber.text.clear()
-                //viewModel = ViewModelProvider(this@MainActivity).get(ContactViewModel::class.java)
-
-
-                viewModel.contactInfo.observe(this@MainActivity, Observer {
-                    contactAdapter.differ.submitList(it)
-                    Toast.makeText(this@MainActivity, "Number added", Toast.LENGTH_SHORT).show()
-
-                })
-            }
-        }
+        navController = findNavController(R.id.nav_host_fragment)
+        setupActionBarWithNavController(navController)
     }
 
 
-    private fun setupRecyclerView() = binding.rvContacts.apply {
-        contactAdapter = ContactAdapter()
-        adapter = contactAdapter
-        layoutManager = LinearLayoutManager(this@MainActivity)
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
 
 }
-
 
 
 

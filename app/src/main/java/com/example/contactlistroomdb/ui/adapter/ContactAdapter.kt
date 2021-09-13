@@ -46,6 +46,7 @@ class ContactAdapter() : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>(
         val contact = differ.currentList[position]
         holder.binding.apply {
             tvName.text = contact.name
+            tvEmail.text = contact.email
             tvNumber.text = contact.phoneNumber
         }
     }

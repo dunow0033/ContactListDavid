@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ContactList Room DB</string>
     <string name="todos">TODOS !!!!</string>
+    <string name="email_address">Email address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="full_name">Full Name</string>
 </resources>
