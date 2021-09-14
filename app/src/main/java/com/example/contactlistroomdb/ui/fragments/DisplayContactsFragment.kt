@@ -64,7 +64,6 @@ class DisplayContactsFragment : Fragment() {
         var itemTouchHelper = ItemTouchHelper(SwipeToDelete(contactAdapter,viewModel,view))
         itemTouchHelper.attachToRecyclerView(binding.rvContacts)
 
-
     }
 
 

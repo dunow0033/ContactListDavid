@@ -25,10 +25,9 @@ import com.example.contactlistroomdb.ui.viewmodel.ContactViewModel
 import com.example.contactlistroomdb.ui.viewmodel.ContactViewModelFactory
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewModel: ContactViewModel
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-lateinit var contactAdapter:ContactAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
