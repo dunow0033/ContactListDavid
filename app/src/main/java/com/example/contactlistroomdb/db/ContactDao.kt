@@ -1,9 +1,6 @@
 package com.example.contactlistroomdb.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.contactlistroomdb.model.Contact
 import kotlinx.coroutines.flow.Flow
 
@@ -15,6 +12,9 @@ interface ContactDao {
 
     @Query("SELECT * FROM contact_table")
     fun readAllContacts(): Flow<List<Contact>>
+
+    @Delete
+    suspend fun deleteContact(contact: Contact)
 
 
 }

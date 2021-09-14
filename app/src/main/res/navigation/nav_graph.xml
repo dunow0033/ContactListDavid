@@ -8,13 +8,13 @@
     <fragment
         android:id="@+id/addContactFragment"
         android:name="com.example.contactlistroomdb.ui.fragments.AddContactFragment"
-        android:label="AddContactFragment"
-        tools:layout="@layout/fragment_addcontacts"/>
+        android:label="Add Contact"
+        tools:layout="@layout/fragment_addcontacts" />
 
     <fragment
         android:id="@+id/displayContactsFragment"
         android:name="com.example.contactlistroomdb.ui.fragments.DisplayContactsFragment"
-        android:label="DisplayContactsFragment"
+        android:label="Contact List"
         tools:layout="@layout/fragment_displaycontacts">
 
         <action

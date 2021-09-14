@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,7 @@ import com.example.contactlistroomdb.repository.ContactRepository
 import com.example.contactlistroomdb.ui.adapter.ContactAdapter
 import com.example.contactlistroomdb.ui.viewmodel.ContactViewModel
 import com.example.contactlistroomdb.ui.viewmodel.ContactViewModelFactory
+import com.example.contactlistroomdb.utils.SwipeToDelete
 
 class DisplayContactsFragment : Fragment() {
     private var _binding: FragmentDisplaycontactsBinding? = null
@@ -59,29 +61,8 @@ class DisplayContactsFragment : Fragment() {
                 .navigate(R.id.action_displayContactsFragment_to_addContactFragment)
         }
 
-        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
-            0,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        ){
-
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                return false
-            }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.absoluteAdapterPosition
-                val article = contactAdapter.differ.currentList[position]
-                contactAdapter.notifyItemRemoved(position)
-                Toast.makeText(context, "you delete ${article}", Toast.LENGTH_SHORT).show()
-
-            }
-        }
-
-
+        var itemTouchHelper = ItemTouchHelper(SwipeToDelete(contactAdapter,viewModel,view))
+        itemTouchHelper.attachToRecyclerView(binding.rvContacts)
 
 
     }
@@ -91,6 +72,9 @@ class DisplayContactsFragment : Fragment() {
         contactAdapter = ContactAdapter()
         adapter = contactAdapter
         layoutManager = LinearLayoutManager(context)
+
+        addItemDecoration(DividerItemDecoration(context, LinearLayoutManager(context).orientation))
+
     }
 
 }

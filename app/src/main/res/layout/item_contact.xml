@@ -16,7 +16,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         tools:text="Name"
-        android:textSize="25sp" />
+        android:textSize="22sp"
+        android:textAppearance="@color/black"/>
 
     <TextView
         android:id="@+id/tvEmail"
@@ -24,7 +25,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         tools:text="Email"
-        android:textSize="25sp" />
+        android:textSize="20sp"
+        android:textAppearance="@color/black"/>
 
 
 
@@ -34,7 +36,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         tools:text="Phone"
-        android:textSize="25sp"/>
+        android:textSize="20sp"
+        android:textAppearance="@color/black"/>
 
 
 

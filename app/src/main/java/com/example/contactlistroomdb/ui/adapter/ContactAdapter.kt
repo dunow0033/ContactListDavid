@@ -52,4 +52,11 @@ class ContactAdapter() : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>(
     }
 
 
+    fun deleteItem(pos: Int) {
+        differ.currentList.removeAt(pos)
+        notifyItemRemoved(pos)
+
+    }
+
+
 }
