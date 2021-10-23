@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/bedon/AndroidStudioProjects/ContactListDavid/app/src/main/res/layout/fragment_addcontacts.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/bedon/AndroidStudioProjects/ContactListDavid/app/src/main/res/layout/fragment_displaycontacts.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/bedon/AndroidStudioProjects/ContactListDavid/app/src/main/res/layout/item_contact.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.38425925925925924" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22437673130193905" />
         <entry key="app/src/main/res/layout/fragment_addcontact.xml" value="0.375" />

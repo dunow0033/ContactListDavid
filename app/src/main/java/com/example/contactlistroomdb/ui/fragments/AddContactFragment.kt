@@ -17,7 +17,6 @@ import com.example.contactlistroomdb.ui.viewmodel.ContactViewModelFactory
 
 class AddContactFragment : Fragment() {
 
-
     private var _binding: FragmentAddcontactsBinding? = null
     private val binding: FragmentAddcontactsBinding get() = _binding!!
 

@@ -24,7 +24,7 @@
         android:background="#fff"
         android:hint="@string/full_name"
         android:padding="10dp"
-        android:textColorHint="#c5c5c5"/>
+        android:textColorHint="#c5c5c5" />
 
     <EditText
         android:id="@+id/et_Email"
